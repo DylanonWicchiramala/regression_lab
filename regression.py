@@ -22,7 +22,7 @@ def plot_liner_regression(mx, my):
     N = len(mx)
     w1 = (sumMaltipy(mx, my) - stat.mean(mx) * stat.mean(my) * N) / (sumSquare(mx) - N * stat.mean(mx) * stat.mean(mx))
     w0 = stat.mean(my) - w1 * stat.mean(mx)
-    x = np.linspace(min(mx) - 1, max(mx) + 1)
+    x = np.linspace(min(mx) - 1, max(mx) + 2)
     y = (w1 * x) + w0
     fig, ax = plt.subplots()
     ax.grid(axis='both')
