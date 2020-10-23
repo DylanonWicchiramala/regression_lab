@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import pylab
 import statistics as stat
 
-DataSetxi = [10, 23, 32, 44]
-DataSetyi = [100, 96, 94, 91]
+DataSetxi = [10, 23, 32, 44, 62, 69]
+DataSetyi = [100, 96, 94, 91 ,86, 83]
 
 fig, ax = plt.subplots()
 
@@ -23,13 +23,28 @@ def sumSquare(mx):
 class regression:
 
     @staticmethod
-    def linear_predict(x):
+    def linear_predict(val):
         N = len(DataSetxi)
         w1 = (sumMaltipy(DataSetxi, DataSetyi) - stat.mean(DataSetxi) * stat.mean(DataSetyi) * N) / \
              (sumSquare(DataSetxi) - N * stat.mean(DataSetxi) * stat.mean(DataSetxi))
         w0 = stat.mean(DataSetyi) - w1 * stat.mean(DataSetxi)
-        y = w1 * x + w0
-        print("x is ", x, "predict y is ", y)
+        y = w1 * val + w0
+        print("x is ", val, "predict y is ", y)
+
+    @staticmethod
+    def linear_predict(arg, val):
+        N = len(DataSetxi)
+        w1 = (sumMaltipy(DataSetxi, DataSetyi) - stat.mean(DataSetxi) * stat.mean(DataSetyi) * N) / \
+             (sumSquare(DataSetxi) - N * stat.mean(DataSetxi) * stat.mean(DataSetxi))
+        w0 = stat.mean(DataSetyi) - w1 * stat.mean(DataSetxi)
+        if(arg=='x'):
+            y = w1 * val + w0
+            print("x is ", val, "predict y is ", y)
+        elif(arg=='y'):
+            x = w1 * (val - w0)
+            print("y is ", val,"predict x is", x)
+
+
 
     @staticmethod
     def liner_plot(mx, my):
@@ -54,5 +69,5 @@ ax.grid(axis='both')
 
 regression.liner_plot(DataSetxi, DataSetyi)
 regression.data_plot(DataSetxi, DataSetyi)
-#regression.linear_predict(60)
+regression.linear_predict(360)
 pylab.show()
