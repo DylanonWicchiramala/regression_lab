@@ -23,25 +23,17 @@ def sumSquare(mx):
 class regression:
 
     @staticmethod
-    def linear_predict(val):
+    def linear_predict(val, axis=None):
         N = len(DataSetxi)
         w1 = (sumMaltipy(DataSetxi, DataSetyi) - stat.mean(DataSetxi) * stat.mean(DataSetyi) * N) / \
              (sumSquare(DataSetxi) - N * stat.mean(DataSetxi) * stat.mean(DataSetxi))
         w0 = stat.mean(DataSetyi) - w1 * stat.mean(DataSetxi)
-        y = w1 * val + w0
-        print("x is ", val, "predict y is ", y)
 
-    @staticmethod
-    def linear_predict(arg, val):
-        N = len(DataSetxi)
-        w1 = (sumMaltipy(DataSetxi, DataSetyi) - stat.mean(DataSetxi) * stat.mean(DataSetyi) * N) / \
-             (sumSquare(DataSetxi) - N * stat.mean(DataSetxi) * stat.mean(DataSetxi))
-        w0 = stat.mean(DataSetyi) - w1 * stat.mean(DataSetxi)
-        if(arg=='x'):
+        if(axis== 'x' or axis is None):
             y = w1 * val + w0
             print("x is ", val, "predict y is ", y)
-        elif(arg=='y'):
-            x = w1 * (val - w0)
+        elif(axis == 'y'):
+            x = (val - w0) / w1
             print("y is ", val,"predict x is", x)
 
 
@@ -69,5 +61,5 @@ ax.grid(axis='both')
 
 regression.liner_plot(DataSetxi, DataSetyi)
 regression.data_plot(DataSetxi, DataSetyi)
-regression.linear_predict(360)
+regression.linear_predict(0, axis='y')
 pylab.show()
