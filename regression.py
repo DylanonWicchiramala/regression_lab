@@ -50,18 +50,6 @@ class regression:
         plt.title(label='reg')
         ax.plot(mx, my, 'ro')
 
-    @staticmethod
-    def liner_plot2(mx, my):
-        N = len(mx)
-        w1 = stat.mean(mx) / stat.mean(my)
-        w0 = stat.mean(my) - w1 * stat.mean(mx)
-        x = np.linspace(min(mx) - 1, max(mx) + 2)
-        y = w1 * x +w0
-        ax.grid(axis='both')
-        plt.title(label='regression')
-        ax.plot(x, y, color='lightgray')
-        #ax.plot(mx, my, 'ro')  #dataplot
-
 ax.grid(axis='both')
 
 regression.liner_plot(DataSetxi, DataSetyi)
