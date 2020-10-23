@@ -8,27 +8,25 @@ DataSetyi = [1, 4, 7, 8, 12, 13]
 
 fig, ax = plt.subplots()
 
+def sumMaltipy(mx, my):
+    sum = 0
+    for i in range(len(mx)):
+        sum += mx[i] * my[i]
+    return sum
+
+def sumSquare(mx):
+    sum = 0
+    for i in range(len(mx)):
+        sum += mx[i] * mx[i]
+    return sum
 
 class regression:
-    @staticmethod
-    def sumMaltipy(mx, my):
-        sum = 0
-        for i in range(len(mx)):
-            sum += mx[i] * my[i]
-        return sum
-
-    @staticmethod
-    def sumSquare(mx):
-        sum = 0
-        for i in range(len(mx)):
-            sum += mx[i] * mx[i]
-        return sum
 
     @staticmethod
     def linear_predict(x):
         N = len(DataSetxi)
-        w1 = (regression.sumMaltipy(DataSetxi, DataSetyi) - stat.mean(DataSetxi) * stat.mean(DataSetyi) * N) / \
-             (regression.sumSquare(DataSetxi) - N * stat.mean(DataSetxi) * stat.mean(DataSetxi))
+        w1 = (sumMaltipy(DataSetxi, DataSetyi) - stat.mean(DataSetxi) * stat.mean(DataSetyi) * N) / \
+             (sumSquare(DataSetxi) - N * stat.mean(DataSetxi) * stat.mean(DataSetxi))
         w0 = stat.mean(DataSetyi) - w1 * stat.mean(DataSetxi)
         y = w1 * x + w0
         print("x is ", x, "predict y is ", y)
@@ -36,8 +34,8 @@ class regression:
     @staticmethod
     def liner_plot(mx, my):
         N = len(mx)
-        w1 = (regression.sumMaltipy(mx, my) - stat.mean(mx) * stat.mean(my) * N) / \
-             (regression.sumSquare(mx) - N * stat.mean(mx) * stat.mean(mx))
+        w1 = (sumMaltipy(mx, my) - stat.mean(mx) * stat.mean(my) * N) / \
+             (sumSquare(mx) - N * stat.mean(mx) * stat.mean(mx))
         w0 = stat.mean(my) - w1 * stat.mean(mx)
         x = np.linspace(min(mx) - 1, max(mx) + 2)
         y = w1 * x + w0
