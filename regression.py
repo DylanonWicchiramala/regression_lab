@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import pylab
 import statistics as stat
 
-DataSetxi = [10, 23, 32, 44, 62, 69]
-DataSetyi = [100, 96, 94, 91, 86, 83]
+DataSetxi = [10, 23, 32, 44, 62, 69, 86]
+DataSetyi = [100, 96, 94, 91, 86, 83, 78]
 
 fig, ax = plt.subplots()
 
@@ -35,9 +35,11 @@ class regression:
         if (axis == 'x' or axis is None):
             y = w1 * val + w0
             print("x is ", val, "predict y is ", y)
+            return y
         elif (axis == 'y'):
             x = (val - w0) / w1
             print("y is ", val, "predict x is", x)
+            return x
 
     @staticmethod
     def liner_plot(mx, my):
@@ -63,5 +65,5 @@ ax.grid(axis='both')
 
 regression.liner_plot(DataSetxi, DataSetyi)
 regression.data_plot(DataSetxi, DataSetyi)
-regression.linear_predict(0, axis='y')
+#print(regression.linear_predict(0, axis='y')/60, "hrs.")
 pylab.show()
