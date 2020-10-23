@@ -65,5 +65,5 @@ ax.grid(axis='both')
 
 regression.liner_plot(DataSetxi, DataSetyi)
 regression.data_plot(DataSetxi, DataSetyi)
-#print(regression.linear_predict(0, axis='y')/60, "hrs.")
+print(regression.linear_predict(0, axis='y')/60, "hrs.")
 pylab.show()
