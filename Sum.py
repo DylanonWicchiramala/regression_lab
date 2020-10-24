@@ -1,4 +1,4 @@
-class sum:
+class Sum:
 
     @staticmethod
     def maltipy(mx, my):
