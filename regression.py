@@ -4,7 +4,7 @@ import pylab
 import statistics as stat
 from regression_lab.Sum import Sum
 
-DataSetxi = [10, 23, 32, 44, 62, 69, 86]
+DataSetxi = [0, 13, 22, 34, 52, 59, 76]
 DataSetyi = [100, 96, 94, 91, 86, 83, 78]
 
 fig, ax = plt.subplots()
