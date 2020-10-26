@@ -14,11 +14,11 @@ fig, ax = plt.subplots()
 class Regression:
 
     @staticmethod
-    def linear_predict(val, axis=None):
-        N = len(DataSetxi)
-        w1 = (sum.maltipy(DataSetxi, DataSetyi) - stat.mean(DataSetxi) * stat.mean(DataSetyi) * N) / \
-             (sum.square(DataSetxi) - N * math.pow(stat.mean(DataSetxi), 2))
-        w0 = stat.mean(DataSetyi) - w1 * stat.mean(DataSetxi)
+    def linear_predict(val, tx=DataSetxi, ty=DataSetyi, axis=None):
+        N = len(tx)
+        w1 = (sum.maltipy(tx, ty) - stat.mean(tx) * stat.mean(ty) * N) / \
+             (sum.square(tx) - N * math.pow(stat.mean(tx), 2))
+        w0 = stat.mean(DataSetyi) - w1 * stat.mean(tx)
 
         if axis == 'x' or axis is None:
             y = w1 * val + w0
