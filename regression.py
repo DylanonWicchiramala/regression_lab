@@ -46,7 +46,7 @@ class Regression:
     def data_plot(mx, my):
         # ax.grid(axis='both')
         plt.title(label='reg')
-        ax.plot(mx, my, 'ro')
+        plt.scatter(mx, my, color='black')
 
 
 ax.grid(axis='both')
