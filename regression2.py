@@ -36,6 +36,8 @@ def regrassion_predict(val, tx=DataSetxi, ty=DataSetyi, degree=1):
     model = LinearRegression().fit(tx_, ty)  # calculate weight value
     print("x is ", val, "predict y is ", *model.predict(transformer.transform(np.array(val).reshape(-1, 1))))
 
-regression_plot(DataSetxi, DataSetyi, 2)
+regression_plot(DataSetxi, DataSetyi, 2, 'lightblue')
+regression_plot(DataSetxi, DataSetyi, 3, 'blue')
+regression_plot(DataSetxi, DataSetyi, 4, 'darkblue')
 
 pylab.show()
