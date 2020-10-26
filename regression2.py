@@ -8,7 +8,7 @@ fig, ax = plt.subplots()
 plt.grid(axis='both')
 
 DataSetxi = np.array([0, 13, 22, 34, 52, 59, 76])
-DataSetyi = np.array([100, 96, 94, 91, 86, 83, 78])
+DataSetyi = np.array([100, 99, 87, 88, 71, 83, 78])
 
 
 def data_plot(mx, my):
@@ -23,7 +23,7 @@ def regression_plot(mx, my, degree=None):
     mx_ = transformer.transform(mx)
     # mx_ = PolynomialFeatures(degree=degree, include_bias=False).fit_transform(mx)
     model = LinearRegression().fit(mx_, my)  # calculate weight value
-    x = np.linspace(min(mx), max(my))
+    x = np.linspace(min(mx), max(mx))
     data_plot(mx, my)
     ax.plot(x, model.predict(transformer.transform(x)))
 
@@ -38,8 +38,7 @@ def regrassion_predict(val, tx=None, ty=None, degree=None):
     model = LinearRegression().fit(tx_, ty)  # calculate weight value
     print("x is ", val, "predict y is ", *model.predict(transformer.transform(np.array(val).reshape(-1, 1))))
 
-for i in range(1, len(DataSetxi) - 1):
+for i in range(1, len(DataSetxi)):
     regression_plot(DataSetxi, DataSetyi, i)
-regrassion_predict(350.44)
 
 pylab.show()
