@@ -5,17 +5,17 @@ import statistics as stat
 import math
 import sum
 
-DataSetxi = [0, 13, 22, 34, 52, 59, 76]
-DataSetyi = [100, 96, 94, 91, 86, 83, 78]
+DataSetxi = []          #[0, 13, 22, 34, 52, 59, 76]       
+DataSetyi = []          #[100, 96, 94, 91, 86, 83, 78]
 
 fig, ax = plt.subplots()
 
 
-def linear_predict(val, tx=DataSetxi, ty=DataSetyi, axis=None):
-    N = len(tx)
-    w1 = (sum.maltipy(tx, ty) - stat.mean(tx) * stat.mean(ty) * N) / \
-         (sum.square(tx) - N * math.pow(stat.mean(tx), 2))
-    w0 = stat.mean(DataSetyi) - w1 * stat.mean(tx)
+def linear_predict(val, trainingSetX=DataSetxi, trainingSetY=DataSetyi, axis=None):
+    N = len(trainingSetX)
+    w1 = (sum.maltipy(trainingSetX, trainingSetY) - stat.mean(trainingSetX) * stat.mean(trainingSetY) * N) / \
+         (sum.square(trainingSetX) - N * math.pow(stat.mean(trainingSetX), 2))
+    w0 = stat.mean(DataSetyi) - w1 * stat.mean(trainingSetX)
     if axis == 'x' or axis is None:
         y = w1 * val + w0
         print("x is ", val, "predict y is ", y)
@@ -24,6 +24,13 @@ def linear_predict(val, tx=DataSetxi, ty=DataSetyi, axis=None):
         x = (val - w0) / w1
         print("y is ", val, "predict x is", x)
         return x
+
+
+def data_plot(mx, my):
+    # ax.grid(axis='both')
+    #plt.title(label='reg')
+    plt.scatter(mx, my, color='black')
+
 
 def liner_plot(mx, my):
     N = len(mx)
@@ -35,17 +42,16 @@ def liner_plot(mx, my):
     # ax.grid(axis='both')
     plt.title(label='regression')
     ax.plot(x, y)
+    data_plot(mx,my)
     # ax.plot(mx, my, 'ro')
 
-def data_plot(mx, my):
-    # ax.grid(axis='both')
-    plt.title(label='reg')
-    plt.scatter(mx, my, color='black')
 
 
 ax.grid(axis='both')
 
-liner_plot(DataSetxi, DataSetyi)
-data_plot(DataSetxi, DataSetyi)
-print(linear_predict(0, axis='y') / 60, "hrs.")
-pylab.show()
+#liner_plot(DataSetxi, DataSetyi)
+#data_plot(DataSetxi, DataSetyi)
+#linear_predict(0, axis='y')
+
+#pylab.show()
+#always use "pylab.show()" after called plot-function
