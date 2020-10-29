@@ -10,20 +10,23 @@ plt.grid(axis='both')
 DataSetxi = np.array([])               #np.array([0, 13, 22, 34, 52, 59, 76])#
 DataSetyi = np.array([])               #np.array([100, 99, 87, 88, 71, 83, 78])#
 
+used_degree:int = 1
+is_ploted:bool = False
 
 #plot a data point (plot DataSetXi and DataSetYi)
 # f(mx:numpy.array[training set; x axis] , my:numpy.array[training set; y axis] , color:str):void 
 def data_plot(mx=DataSetxi, my=DataSetyi, color='black'):
+    is_ploted = True
     plt.title(label='Regression')
     plt.scatter(mx, my, color=color)
 
 
-used_degree:int
 #plot regression grapth.
 # f(mx:numpy.array[training set; x axis] , my:numpy.array[training set; y axis] , \
 # degree:int[dregree of polynomial regrassion] , color:str):void 
 def regression_plot(mx = DataSetxi, my = DataSetyi, degree = 1, color = None):
     used_degree = degree
+    is_ploted = True
     mx = mx.reshape((-1, 1))
     transformer = PolynomialFeatures(degree=degree, include_bias=False).fit(mx)
     mx_ = transformer.transform(mx)
@@ -54,5 +57,4 @@ def regrassion_predict(val_x, trainingSetX = DataSetxi, trainingSetY = DataSetyi
 #regression_plot(4, 'darkblue')
 #print(regrassion_predict(82))
 
-#pylab.show()
-#always use "pylab.show()" after called plot-function
+if is_ploted : pylab.show
