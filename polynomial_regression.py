@@ -7,15 +7,18 @@ import pylab
 fig, ax = plt.subplots()
 plt.grid(axis='both')
 
-DataSetxi = np.array([])               #np.array([0, 13, 22, 34, 52, 59, 76])#
-DataSetyi = np.array([])               #np.array([100, 99, 87, 88, 71, 83, 78])#
+DataSetxi =                np.array([0, 13, 22, 34, 52, 59, 76])#np.array([])
+DataSetyi =                np.array([100, 99, 87, 88, 71, 83, 78])#np.array([])
 
-used_degree:int = 1
+global is_ploted
 is_ploted:bool = False
+
 
 #plot a data point (plot DataSetXi and DataSetYi)
 # f(mx:numpy.array[training set; x axis] , my:numpy.array[training set; y axis] , color:str):void 
 def data_plot(mx=DataSetxi, my=DataSetyi, color='black'):
+     
+    global is_ploted
     is_ploted = True
     plt.title(label='Regression')
     plt.scatter(mx, my, color=color)
@@ -24,9 +27,13 @@ def data_plot(mx=DataSetxi, my=DataSetyi, color='black'):
 #plot regression grapth.
 # f(mx:numpy.array[training set; x axis] , my:numpy.array[training set; y axis] , \
 # degree:int[dregree of polynomial regrassion] , color:str):void 
-def regression_plot(mx = DataSetxi, my = DataSetyi, degree = 1, color = None):
-    used_degree = degree
+def regression_plot(mx = DataSetxi, my = DataSetyi, degree = default_degree, color = None):
+
+    global is_ploted
     is_ploted = True
+    global default_degree
+    default_degree = degree
+
     mx = mx.reshape((-1, 1))
     transformer = PolynomialFeatures(degree=degree, include_bias=False).fit(mx)
     mx_ = transformer.transform(mx)
@@ -41,20 +48,26 @@ def regression_plot(mx = DataSetxi, my = DataSetyi, degree = 1, color = None):
 #predict value from regrassionfunction [regf(val_x)]
 # f(val_x:float or int[value (x axis)], trainingSetX:numpy.array[training set; x axis] ,
 # trainingSetY:numpy.array[training set; y axis] , degree:int[dregree of polynomial-regrassion-function-
-# that want to predict. defualt is last used dregree] , color:str):float[predicted value (y axis)]
-def regrassion_predict(val_x, trainingSetX = DataSetxi, trainingSetY = DataSetyi, degree = used_degree):
+# that want to predict. defualt is 1] , color:str):float[predicted value (y axis)]
+def regrassion_predict(val_x, trainingSetX = DataSetxi, trainingSetY = DataSetyi, degree = default_degree):
+
+    global default_degree
+    default_degree = degree
     trainingSetX = trainingSetX.reshape((-1, 1))
     transformer = PolynomialFeatures(degree=degree, include_bias=False).fit(trainingSetX)
     tx_ = transformer.transform(trainingSetX)
-    # mx_ = PolynomialFeatures(degree=degree, include_bias=False).fit_transform(mx)
+    
     model = LinearRegression().fit(tx_, trainingSetY)  # calculate weight value
     print("x is ", val_x, "predict y is ", *model.predict(transformer.transform(np.array(val_x).reshape(-1, 1))))
     return float(model.predict(transformer.transform(np.array(val_x).reshape(-1, 1))))
 
 
-#regression_plot(DataSetxi, DataSetyi, 2, 'lightblue')
-#regression_plot(DataSetxi, DataSetyi, 3, 'blue')
-#regression_plot(4, 'darkblue')
-#print(regrassion_predict(82))
+data_plot()
+regression_plot(DataSetxi, DataSetyi, 2, 'lightblue')
+regression_plot(DataSetxi, DataSetyi, 3, 'blue')
+regrassion_predict(76)
 
-if is_ploted : pylab.show
+
+
+if is_ploted :
+    pylab.show()

@@ -5,17 +5,44 @@ import statistics as stat
 import math
 import sum
 
-DataSetxi = []          #[0, 13, 22, 34, 52, 59, 76]       
-DataSetyi = []          #[100, 96, 94, 91, 86, 83, 78]
+class regressionf:
+
+    infinity = 50_000_000
+    wi = np.arange(-infinity, infinity)
+    w = []
+
+
+    @staticmethod
+    def polynomialf(x, degree = 1):
+        global w, wi, data_setX, data_setY
+        w = [wi in range(degree + 1)]
+        fx = 0
+        for i in range(degree + 1):
+            fx += math.pow(x,i) * w[i]
+        Ex = (data_setY[i] - (fx))**2
+
+
+
 
 fig, ax = plt.subplots()
+data_setX = []          #[0, 13, 22, 34, 52, 59, 76]
+data_setY = []          #[100, 96, 94, 91, 86, 83, 78]
+is_plot:bool = False
 
 
-def linear_predict(val, trainingSetX=DataSetxi, trainingSetY=DataSetyi, axis=None):
+def get_dataset(X:list,Y:list):
+    global data_setX, data_setY
+    data_setX = X
+    data_setY = Y
+
+
+def linear_predict(val, trainingSetX=data_setX, trainingSetY=data_setY, axis=None):
+    global is_plot
+    is_plot = True
     N = len(trainingSetX)
     w1 = (sum.maltipy(trainingSetX, trainingSetY) - stat.mean(trainingSetX) * stat.mean(trainingSetY) * N) / \
          (sum.square(trainingSetX) - N * math.pow(stat.mean(trainingSetX), 2))
-    w0 = stat.mean(DataSetyi) - w1 * stat.mean(trainingSetX)
+    w0 = stat.mean(data_setY) - w1 * stat.mean(trainingSetX)
     if axis == 'x' or axis is None:
         y = w1 * val + w0
         print("x is ", val, "predict y is ", y)
