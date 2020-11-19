@@ -7,11 +7,12 @@ import pylab
 fig, ax = plt.subplots()
 plt.grid(axis='both')
 
-DataSetxi =                np.array([0, 13, 22, 34, 52, 59, 76])#np.array([])
-DataSetyi =                np.array([100, 99, 87, 88, 71, 83, 78])#np.array([])
+#DataSetxi = np.array([])
+#DataSetyi = np.array([])
 
 global is_ploted
 is_ploted:bool = False
+default_degree = 1
 
 
 #plot a data point (plot DataSetXi and DataSetYi)
@@ -60,14 +61,6 @@ def regrassion_predict(val_x, trainingSetX = DataSetxi, trainingSetY = DataSetyi
     model = LinearRegression().fit(tx_, trainingSetY)  # calculate weight value
     print("x is ", val_x, "predict y is ", *model.predict(transformer.transform(np.array(val_x).reshape(-1, 1))))
     return float(model.predict(transformer.transform(np.array(val_x).reshape(-1, 1))))
-
-
-data_plot()
-regression_plot(DataSetxi, DataSetyi, 2, 'lightblue')
-regression_plot(DataSetxi, DataSetyi, 3, 'blue')
-regrassion_predict(76)
-
-
 
 if is_ploted :
     pylab.show()
