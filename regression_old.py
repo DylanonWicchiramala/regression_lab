@@ -3,12 +3,23 @@ import matplotlib.pyplot as plt
 import pylab
 import statistics as stat
 import math
-import sum
 
 DataSetxi = []          #[0, 13, 22, 34, 52, 59, 76]       
 DataSetyi = []          #[100, 96, 94, 91, 86, 83, 78]
 
 fig, ax = plt.subplots()
+
+def maltipy(mx, my):
+    sum: int = 0
+    for i in range(len(mx)):
+        sum += mx[i] * my[i]
+    return sum
+
+def square(mx):
+    sum: int = 0
+    for i in range(len(mx)):
+        sum += mx[i] * mx[i]
+    return sum
 
 
 def linear_predict(val, trainingSetX=DataSetxi, trainingSetY=DataSetyi, axis=None):
